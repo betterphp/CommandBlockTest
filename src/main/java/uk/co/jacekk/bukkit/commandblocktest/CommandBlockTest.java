@@ -11,9 +11,6 @@ import org.bukkit.event.block.CommandBlockChangeEvent;
 import org.bukkit.event.block.CommandBlockCommandEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.permissions.PermissionAttachment;
-import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CommandBlockTest extends JavaPlugin implements Listener {
@@ -28,7 +25,9 @@ public class CommandBlockTest extends JavaPlugin implements Listener {
 	
 	@EventHandler
 	public void onCommandBlockCommand(CommandBlockCommandEvent event){
-		this.server.broadcastMessage("Command block executed: " + event.getCommand());
+		for (String command : event.commandList()){
+			this.server.broadcastMessage("Command block executed: " + command);
+		}
 	}
 	
 	@EventHandler
